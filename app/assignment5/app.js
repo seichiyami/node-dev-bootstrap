@@ -1,3 +1,9 @@
+// Server-side code
+/* jshint node: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, strict: true, undef: true, unused: true */ 
+
+//Brandon Huebert
+//
+
 var http = require("http"),
     server,
     score,
@@ -10,9 +16,10 @@ score =
 	wins: 0,
 	losses: 0,
 	ties: 0
-}
+};
 
 server = http.createServer(function (req, res) {
+  "use strict";
 	randomnum = Math.floor(Math.random() * 5);
 	opponent = "";
 
@@ -106,6 +113,7 @@ server = http.createServer(function (req, res) {
     		score.losses += 1;
     	}
     }
+
     //res.write("Your opponent chose " + opponent + ".\n");
     res.write(JSON.stringify(score));
     res.end();
@@ -117,4 +125,5 @@ server.listen(3000);
 
 console.log("Server listening on port 3000");
 
+//used http://stackoverflow.com/questions/15427220/how-to-handle-post-request-in-node-js
 //used http://www.javascriptkit.com/javatutors/randomnum.shtml
