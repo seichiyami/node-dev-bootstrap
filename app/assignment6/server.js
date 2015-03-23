@@ -2,15 +2,12 @@
 /* jshint node: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, strict: true, undef: true, unused: true */ 
 
 //Brandon Huebert
-//
 
 var http = require("http"),
 	express = require("express"),
 	app = express(),
-    server,
     score = {},
     randomnum,
-    play,
     opponent;
 
 app.use(express.static(__dirname + "/client"));
@@ -23,6 +20,8 @@ score.opponent = "";
 score.player = "";
 
 function playGame(playerChoice) {
+    "use strict";
+
 	randomnum = Math.floor(Math.random() * 5);
 
 	if (randomnum === 0){
@@ -93,26 +92,31 @@ http.createServer(app).listen(3000);
 
 // set up routes
 app.get("/play/rock", function(req, res) {
+    "use strict";
 	playGame("rock");
 	res.json(score);
 });
 
 app.get("/play/paper", function(req, res) {
+    "use strict";
     playGame("paper");
     res.json(score);
 });
 
 app.get("/play/scissors", function(req, res) {
+    "use strict";
     playGame("scissors");
     res.json(score);
 });
 
 app.get("/play/lizard", function(req, res) {
+    "use strict";
     playGame("lizard");
     res.json(score);
 });
 
 app.get("/play/spock", function(req, res) {
+    "use strict";
     playGame("spock");
     res.json(score);
 });
